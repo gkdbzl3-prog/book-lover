@@ -91,17 +91,36 @@ export default function App() {
     if (!n) return;
     localStorage.setItem("bc_nickname", n);
     localStorage.setItem("bc_avatar", avatarPick);
-    setNickname(n); setUid(nickToUid(n)); setAvatar(avatarPick); setConfirmed(true);
+    const newUid = nickToUid(n);
+    setNickname(n); setUid(newUid); setAvatar(avatarPick); setConfirmed(true);
+    // 멤버 목록에 즉시 등록 (아무것도 안 눌러도 다른 사람 화면에 보이게)
+    if (firebaseReady) {
+      void setDoc(doc(db, membersCol(monthKeyOf(new Date())), newUid), {
+        nickname: n, avatar: avatarPick,
+        bingoCells: new Array(9).fill(false),
+        book: defaultBook(),
+        updatedAt: serverTimestamp(),
+      }, { merge: true }).catch(console.error);
+    }
   };
 
   /* 내 데이터 초기 로드 */
   useEffect(() => {
     if (!confirmed || !firebaseReady) return;
     getDoc(doc(db, membersCol(monthKey), uid)).then(snap => {
-      if (!snap.exists()) return;
-      const data = snap.data() || {};
-      setMyBingo(Array.isArray(data.bingoCells) ? data.bingoCells : new Array(9).fill(false));
-      setMyBook(data.book && typeof data.book === "object" ? { ...defaultBook(), ...data.book } : defaultBook());
+      if (snap.exists()) {
+        const data = snap.data() || {};
+        setMyBingo(Array.isArray(data.bingoCells) ? data.bingoCells : new Array(9).fill(false));
+        setMyBook(data.book && typeof data.book === "object" ? { ...defaultBook(), ...data.book } : defaultBook());
+      } else {
+        // 재방문자인데 doc이 없으면 (월 바뀜 등) 빈 doc으로 등록
+        void setDoc(doc(db, membersCol(monthKey), uid), {
+          nickname, avatar,
+          bingoCells: new Array(9).fill(false),
+          book: defaultBook(),
+          updatedAt: serverTimestamp(),
+        }).catch(console.error);
+      }
     });
   }, [confirmed, monthKey, uid]);
 
@@ -117,24 +136,28 @@ export default function App() {
     });
   }, [confirmed, monthKey]);
 
-  /* 멤버 구독 (나 제외) */
+  /* 멤버 구독 (전체 실시간) */
   useEffect(() => {
     if (!confirmed || !firebaseReady) return;
-    return onSnapshot(collection(db, membersCol(monthKey)), snap => {
-      const all = [];
-      snap.forEach(d => {
-        if (d.id === uid) return;
-        const data = d.data() || {};
-        all.push({
-          id: d.id,
-          nickname: data.nickname || "",
-          avatar: data.avatar || "🙂",
-          bingoCells: Array.isArray(data.bingoCells) ? data.bingoCells : new Array(9).fill(false),
-          book: data.book && typeof data.book === "object" ? { ...defaultBook(), ...data.book } : defaultBook(),
+    return onSnapshot(
+      collection(db, membersCol(monthKey)),
+      snap => {
+        const all = [];
+        snap.forEach(d => {
+          if (d.id === uid) return;
+          const data = d.data() || {};
+          all.push({
+            id: d.id,
+            nickname: data.nickname || "",
+            avatar: data.avatar || "🙂",
+            bingoCells: Array.isArray(data.bingoCells) ? data.bingoCells : new Array(9).fill(false),
+            book: data.book && typeof data.book === "object" ? { ...defaultBook(), ...data.book } : defaultBook(),
+          });
         });
-      });
-      setMembers(all.sort((a,b) => (a.nickname||"").localeCompare(b.nickname||"","ko")));
-    });
+        setMembers(all.sort((a,b) => (a.nickname||"").localeCompare(b.nickname||"","ko")));
+      },
+      err => console.error("멤버 구독 실패:", err)
+    );
   }, [confirmed, monthKey, uid]);
 
   /* 저장 */
