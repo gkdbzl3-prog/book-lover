@@ -1,0 +1,559 @@
+.app {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 18px 16px 80px;
+  min-height: 100vh;
+}
+
+.brand {
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  margin: 0;
+  background: linear-gradient(135deg, #a78bfa, #fb923c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── 설정 화면 ── */
+.setup {
+  text-align: center;
+  padding-top: 8vh;
+}
+
+.setup-sub {
+  color: rgba(255,255,255,0.5);
+  margin: 4px 0 24px;
+  font-size: 14px;
+}
+
+.setup-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 18px;
+  padding: 20px;
+  text-align: left;
+  max-width: 360px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.setup-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.55);
+  margin: 14px 0 6px;
+}
+
+.setup-input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(0,0,0,0.25);
+  color: #fff;
+  font-size: 15px;
+  margin-top: 6px;
+}
+
+.setup-input::placeholder { color: rgba(255,255,255,0.3); }
+
+.avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+}
+
+.avatar-opt {
+  aspect-ratio: 1;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.avatar-opt.on {
+  border-color: rgba(167,139,250,0.8);
+  background: rgba(167,139,250,0.18);
+}
+
+.setup-hint {
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+  text-align: center;
+  margin: 10px 0 0;
+  line-height: 1.5;
+}
+
+.setup-btn {
+  width: 100%;
+  margin-top: 16px;
+  padding: 13px;
+  border-radius: 12px;
+  border: none;
+  font-size: 15px;
+  font-weight: 800;
+  color: #fff;
+  cursor: pointer;
+  background: linear-gradient(135deg, #a78bfa, #fb923c);
+}
+
+/* ── 상단 바 ── */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.me {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.me-avatar { font-size: 20px; }
+
+/* ── 탭 네비 ── */
+.tab-content {
+  padding-bottom: 16px;
+}
+
+.tab-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  background: rgba(21,17,31,0.92);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 8px 0 max(8px, env(safe-area-inset-bottom));
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  background: none;
+  color: rgba(255,255,255,0.4);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.tab-btn.active {
+  color: #a78bfa;
+}
+
+/* ── 빙고 탭 ── */
+.bingo-tab {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.bingo-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bingo-month {
+  font-size: 16px;
+  font-weight: 800;
+  flex: 1;
+}
+
+.bingo-badge {
+  font-size: 13px;
+  font-weight: 800;
+  color: #fbbf24;
+  background: rgba(251,191,36,0.15);
+  border: 1px solid rgba(251,191,36,0.3);
+  border-radius: 8px;
+  padding: 3px 10px;
+  animation: pop 0.3s ease;
+}
+
+@keyframes pop {
+  0% { transform: scale(0.8); opacity: 0; }
+  60% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.edit-btn {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.45);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  padding: 5px 12px;
+  cursor: pointer;
+}
+
+.label-editor {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.label-input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(0,0,0,0.2);
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+}
+
+.bingo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.bingo-cell {
+  aspect-ratio: 1;
+  border-radius: 14px;
+  border: 1.5px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
+  padding: 8px;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+}
+
+.bingo-cell:active { transform: scale(0.94); }
+
+.bingo-cell.checked {
+  background: rgba(167,139,250,0.15);
+  border-color: rgba(167,139,250,0.4);
+}
+
+.bingo-cell.line {
+  background: rgba(167,139,250,0.25);
+  border-color: rgba(167,139,250,0.7);
+  box-shadow: 0 0 12px rgba(167,139,250,0.2);
+}
+
+.bingo-check {
+  font-size: 18px;
+  font-weight: 900;
+  color: #a78bfa;
+  line-height: 1;
+}
+
+.bingo-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.75);
+  text-align: center;
+  line-height: 1.3;
+  word-break: keep-all;
+}
+
+.bingo-cell.checked .bingo-label { color: rgba(167,139,250,0.9); }
+
+/* ── 독서 탭 ── */
+.reading-tab {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.book-setup-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 18px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 800;
+  margin: 0 0 8px;
+}
+
+.cancel-btn {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: none;
+  color: rgba(255,255,255,0.5);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* 프로그레스 영역 */
+.progress-section {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.progress-circle-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.cover-btn {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  background: none;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  padding: 4px 10px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.progress-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.book-title-text {
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.3;
+  word-break: keep-all;
+}
+
+.page-count {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  font-variant-numeric: tabular-nums;
+}
+
+.percent-text {
+  font-size: 28px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #a78bfa, #fb923c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1;
+}
+
+.finished-badge {
+  font-size: 18px;
+  font-weight: 800;
+  color: #4ade80;
+}
+
+/* 쪽수 입력 */
+.page-input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 12px 16px;
+}
+
+.page-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.55);
+  white-space: nowrap;
+}
+
+.page-input {
+  flex: 1;
+  min-width: 0;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.page-input:focus { outline: none; }
+
+.page-total {
+  font-size: 13px;
+  color: rgba(255,255,255,0.35);
+  white-space: nowrap;
+}
+
+/* 타이머 버튼 */
+.timer-btn {
+  width: 100%;
+  padding: 16px;
+  border-radius: 16px;
+  border: none;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  background: rgba(167,139,250,0.12);
+  border: 1.5px solid rgba(167,139,250,0.3);
+  color: #c4b5fd;
+  transition: all 0.15s;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.3px;
+}
+
+.timer-btn.active {
+  background: rgba(251,146,60,0.12);
+  border-color: rgba(251,146,60,0.4);
+  color: #fdba74;
+  animation: pulse-border 2s ease-in-out infinite;
+}
+
+@keyframes pulse-border {
+  0%, 100% { border-color: rgba(251,146,60,0.4); }
+  50% { border-color: rgba(251,146,60,0.8); }
+}
+
+.change-book-btn {
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  padding: 4px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* 세션 기록 */
+.sessions {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 14px 16px;
+}
+
+.sessions-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: rgba(255,255,255,0.55);
+  margin: 0 0 10px;
+}
+
+.session-item {
+  font-size: 12px;
+  color: rgba(255,255,255,0.55);
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-variant-numeric: tabular-nums;
+}
+
+.session-item:last-child { border-bottom: none; }
+
+/* ── 멤버 탭 ── */
+.members-tab {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.member-card {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 18px;
+  padding: 14px;
+}
+
+.member-card.mine-card {
+  background: rgba(167,139,250,0.07);
+  border-color: rgba(167,139,250,0.2);
+}
+
+.mc-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mc-top {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.mc-avatar { font-size: 18px; }
+
+.mc-name {
+  font-size: 14px;
+  font-weight: 800;
+  flex: 1;
+}
+
+.mc-bingo-badge {
+  font-size: 10px;
+  font-weight: 800;
+  color: #fbbf24;
+  background: rgba(251,191,36,0.12);
+  border: 1px solid rgba(251,191,36,0.3);
+  border-radius: 6px;
+  padding: 2px 7px;
+}
+
+.mc-book {
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mc-done-icon {
+  color: #4ade80;
+  font-weight: 900;
+}
+
+.mc-bingo-bar {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.mc-bingo-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  transition: background 0.15s;
+}
+
+.mc-bingo-dot.on {
+  background: #a78bfa;
+}
