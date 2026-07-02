@@ -177,13 +177,13 @@ export default function App() {
     return (
       <main className="app">
         <div className="setup">
-          <h1 className="brand">북클럽</h1>
-          <p className="setup-sub">독서 모임</p>
+          <h1 className="brand">book끄lover</h1>
+          <p className="setup-sub">BOOK</p>
           <div className="setup-card">
-            <label className="setup-label">닉네임</label>
+            <label className="setup-label">NICKNAME</label>
             <input className="setup-input" value={nickInput} onChange={e => setNickInput(e.target.value)}
               onKeyDown={e => e.key === "Enter" && confirmNickname()} placeholder="닉네임" maxLength={12} />
-            <label className="setup-label">아바타</label>
+            <label className="setup-label">AVATAR</label>
             <div className="avatar-grid">
               {AVATARS.map(a => (
                 <button key={a} type="button" className={`avatar-opt${avatarPick===a?" on":""}`} onClick={() => setAvatarPick(a)}>{a}</button>
@@ -200,7 +200,7 @@ export default function App() {
   return (
     <main className="app">
       <header className="topbar">
-        <h1 className="brand">북클럽</h1>
+        <h1 className="brand">book끄lover</h1>
         <div className="me">
           <span className="me-avatar">{avatar}</span>
           <span className="me-name">{nickname}</span>
